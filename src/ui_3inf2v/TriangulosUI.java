@@ -4,6 +4,8 @@
  */
 package ui_3inf2v;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 20221074010071
@@ -49,6 +51,11 @@ public class TriangulosUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Triângulos");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -109,7 +116,7 @@ public class TriangulosUI extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,15 +207,57 @@ public class TriangulosUI extends javax.swing.JFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
-
+    public static boolean isTriangle(double a, double b, double c){
+        return a < b + c && b < a + c && c < a + b;
+    }
+    //cd "CAMINHO_PROJETO"
+    // git add.
+    // git commit -m
+    public static string typeTriangle(double a, double b, double c){
+        if (a == b && b == c) {
+            return "EQUILATERO";
+        }else if(a == b || b == c || a == c){
+            return "ISOSCELES";
+        }else {
+            return "ESCALENO";
+        }
+    }
+    
     private void CalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcActionPerformed
+        
+        if (jTextField1.getText() .equals("") || jTextField2.getText)
+        
+        JOptionPane.showMessageDialog(
+        null,
+        "Preencha todos os lados"
+        "ERRO"
+        );
+        
         double a = Double.parseDouble(jTextField1.getText());
         double b = Double.parseDouble(jTextField2.getText());
         double c = Double.parseDouble(jTextField3.getText());
         
+        if (isTriangle(a,b,c)){
+            tipoLabel.setText("Tipo ="+typeTriangle(a, b, c));
+            tipoLabel.setText(string.format("Área = %.4f", areaTriangle(a, b, c)));
+        }else {
+            tipoLabel.setText("Não é um triângulo!");
+            
+            
+        }
+        
         tipoLabel.setText("Tipo encontrado...");
         tipoLabel.setText("Área encontrado...");
     }//GEN-LAST:event_CalcActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        tipoLabel.setText("Tipo = ?");
+        tipoLabel.setForeground(Color.black);
+        areaLabel.setText("Área = ?");
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
